@@ -67,14 +67,14 @@ class Login:
     def execute(self, match_num: int, ctx: dict) -> dict:
         if ctx['message_type'] != 'private':
             return {
-                'reply': '请私聊使用',
+                'reply': '请勿通过聊天获取登录链接\n\n请看群公告置顶',
                 'block': True
             }
         reply = ''
         if match_num == 1:
-            reply = self._get_login_code_url(ctx)
+            reply = '请勿私聊获取链接，看群公告置顶'
             if self.setting['web_mode_hint']:
-                reply += '\n\n如果无法打开，请仔细阅读教程中《链接无法打开》的说明'
+                reply += '\n\n临时会话发送链接，会导致冻结'
         elif match_num == 3:
             reply = f'您的临时密码是：{self._reset_pwd(ctx)}'
         else:
